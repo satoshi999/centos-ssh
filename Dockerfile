@@ -15,6 +15,9 @@ RUN sed -ri 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/ssh
 RUN sed -ri 's/^#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN passwd -d root
 
+RUN echo 'たとえ鍵を使わないにしても作成しないとログインできないので作成する'
+RUN /usr/sbin/sshd-keygen
+
 RUN echo 'ポート開放'
 EXPOSE 22
 RUN echo '実行時にサービス起動'
